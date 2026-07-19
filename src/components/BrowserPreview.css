@@ -1,0 +1,143 @@
+.bpre {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at top right, #101c3e 0%, #060912 60%);
+  padding: 14px 16px;
+  font-family: var(--ff-body);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bpre-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(140,170,255,0.14);
+}
+
+.bpre-logo { height: 14px; width: auto; object-fit: contain; border-radius: 2px; }
+
+.bpre-brand {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 9px;
+  color: #fff;
+  margin-right: auto;
+}
+
+.bpre-nav {
+  display: flex;
+  gap: 10px;
+  font-size: 7px;
+  color: #8593b8;
+}
+
+.bpre-nav-active { color: #5ee7ff; }
+
+.bpre-btn {
+  font-size: 6.5px;
+  font-weight: 700;
+  background: linear-gradient(120deg, #22d3ee, #2f6bff);
+  color: #03050c;
+  padding: 5px 9px;
+  border-radius: 100px;
+}
+
+.bpre-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 1;
+  align-items: center;
+}
+
+.bpre-hero-title {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.bpre-hero-sub {
+  font-size: 7px;
+  color: #8593b8;
+  margin-top: 5px;
+}
+
+.bpre-hero-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.bpre-cta {
+  font-size: 6.5px;
+  font-weight: 700;
+  background: linear-gradient(120deg, #22d3ee, #2f6bff);
+  color: #03050c;
+  padding: 5px 10px;
+  border-radius: 100px;
+}
+
+.bpre-play { font-size: 6.5px; color: #aab6d6; }
+
+.bpre-hero-chart {
+  background: rgba(20,31,61,0.7);
+  border: 1px solid rgba(140,170,255,0.18);
+  border-radius: 8px;
+  padding: 8px;
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.bpre-chart-label {
+  font-size: 6px;
+  color: #5ee7ff;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.bpre-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 36px;
+}
+
+.bpre-bars span {
+  flex: 1;
+  background: linear-gradient(180deg, #5ee7ff, #2f6bff);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.85;
+}
+
+.bpre-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.bpre-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(140,170,255,0.14);
+  border-radius: 6px;
+  padding: 7px 5px;
+  font-size: 6px;
+  color: #aab6d6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.bpre-card-active {
+  background: rgba(34,211,238,0.1);
+  border-color: rgba(94,231,255,0.4);
+  color: #5ee7ff;
+}
