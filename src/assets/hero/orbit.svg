@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="700" viewBox="0 0 700 700">
+<defs>
+<linearGradient id="orbitStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#4FC3FF"/>
+<stop offset="100%" stop-color="#1E88E5"/>
+</linearGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+<feGaussianBlur stdDeviation="4" result="blur"/>
+<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+
+<ellipse cx="350" cy="350" rx="220" ry="120"
+fill="none" stroke="url(#orbitStroke)" stroke-width="3"
+opacity="0.45" filter="url(#glow)"
+transform="rotate(-20 350 350)"/>
+
+<ellipse cx="350" cy="350" rx="220" ry="120"
+fill="none" stroke="url(#orbitStroke)" stroke-width="3"
+opacity="0.30" filter="url(#glow)"
+transform="rotate(20 350 350)"/>
+
+<ellipse cx="350" cy="350" rx="170" ry="280"
+fill="none" stroke="url(#orbitStroke)" stroke-width="2.5"
+opacity="0.20" filter="url(#glow)"/>
+
+<circle cx="530" cy="250" r="6" fill="#4FC3FF"/>
+<circle cx="180" cy="470" r="5" fill="#90CAF9"/>
+<circle cx="350" cy="80" r="4" fill="#BBDEFB"/>
+</svg>

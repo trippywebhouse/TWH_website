@@ -1,0 +1,340 @@
+/* ==========================================
+   FLOATING CARDS CONTAINER
+========================================== */
+
+.floating-cards {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.floating-card {
+  position: absolute;
+
+  width: 220px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 16px 18px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,.45);
+
+  box-shadow:
+      0 20px 45px rgba(15,23,42,.12);
+
+  transition: .35s ease;
+
+  pointer-events: auto;
+
+  animation: floatingCard 5s ease-in-out infinite;
+}
+
+/* ==========================================
+   ICON
+========================================== */
+
+.floating-icon{
+
+width:48px;
+height:48px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:14px;
+
+background:linear-gradient(
+135deg,
+#2563eb,
+#1d4ed8
+);
+
+color:white;
+
+flex-shrink:0;
+
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.floating-content h4{
+
+margin:0;
+
+font-size:15px;
+
+font-weight:700;
+
+color:#0f172a;
+
+line-height:1.3;
+
+}
+
+.floating-content p{
+
+margin-top:4px;
+
+font-size:13px;
+
+color:#64748b;
+
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+
+.floating-card:hover{
+
+transform:translateY(-8px) scale(1.03);
+
+box-shadow:
+0 28px 55px rgba(15,23,42,.18);
+
+}
+
+/* ==========================================
+   CARD POSITIONS
+========================================== */
+
+.top-left{
+
+top:50px;
+
+left:-35px;
+
+}
+
+.middle-left{
+
+top:220px;
+
+left:-70px;
+
+animation-delay:.6s;
+
+}
+
+.bottom-left{
+
+bottom:90px;
+
+left:-15px;
+
+animation-delay:1.2s;
+
+}
+
+.top-right{
+
+top:70px;
+
+right:-45px;
+
+animation-delay:.4s;
+
+}
+
+.middle-right{
+
+top:250px;
+
+right:-80px;
+
+animation-delay:.9s;
+
+}
+
+.bottom-right{
+
+bottom:100px;
+
+right:-20px;
+
+animation-delay:1.4s;
+
+}
+
+/* ==========================================
+   FLOAT ANIMATION
+========================================== */
+
+@keyframes floatingCard{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1200px){
+
+.floating-card{
+
+width:200px;
+
+padding:14px;
+
+}
+
+}
+
+@media(max-width:992px){
+
+.top-left{
+
+left:10px;
+
+}
+
+.middle-left{
+
+left:-5px;
+
+}
+
+.bottom-left{
+
+left:25px;
+
+}
+
+.top-right{
+
+right:10px;
+
+}
+
+.middle-right{
+
+right:-10px;
+
+}
+
+.bottom-right{
+
+right:20px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.floating-card{
+
+width:170px;
+
+padding:12px;
+
+gap:10px;
+
+}
+
+.floating-icon{
+
+width:40px;
+
+height:40px;
+
+}
+
+.floating-content h4{
+
+font-size:13px;
+
+}
+
+.floating-content p{
+
+font-size:11px;
+
+}
+
+.top-left{
+
+top:30px;
+
+}
+
+.middle-left{
+
+top:170px;
+
+}
+
+.bottom-left{
+
+bottom:50px;
+
+}
+
+.top-right{
+
+top:40px;
+
+}
+
+.middle-right{
+
+top:180px;
+
+}
+
+.bottom-right{
+
+bottom:60px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.floating-card{
+
+display:none;
+
+}
+}
