@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async'; // Step 1: Import Helmet
 import { 
   Sparkles, 
   Phone, 
@@ -58,6 +59,29 @@ export default function Contact() {
   return (
     <div className="w-full bg-[#F8FAFC] min-h-screen text-[#0B192C]">
       
+      {/* Dynamic SEO Meta Tags using React Helmet */}
+      <Helmet>
+        {/* Primary Page Title & Meta Description */}
+        <title>Contact Us | Trippy Web House - Web Design & AI Agency</title>
+        <meta 
+          name="description" 
+          content="Get in touch with Trippy Web House for custom web design, AI integration, e-commerce, and digital marketing inquiries. Quick response via email & WhatsApp." 
+        />
+        <meta 
+          name="keywords" 
+          content="Contact Trippy Web House, Web Development Agency Contact, Hire Web Developer Tamil Nadu, AI Integration Consultation, Trippy Web House WhatsApp" 
+        />
+
+        {/* Social Media Link Preview Tags */}
+        <meta property="og:title" content="Contact Trippy Web House | Get a Quote" />
+        <meta 
+          property="og:description" 
+          content="Let's build your brand. Get in touch with us for web applications, AI automations, and growth marketing." 
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://trippywebhouse.vercel.app/" />
+      </Helmet>
+
       {/* 1. Dark Header Hero Banner */}
       <section className="relative w-full py-24 md:py-32 bg-[#0B192C] overflow-hidden flex items-center justify-center">
         <div 
@@ -299,8 +323,6 @@ export default function Contact() {
 
         </div>
       </section>
-
-      
 
     </div>
   );

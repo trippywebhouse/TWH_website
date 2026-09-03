@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async'; // Step 1: Import Helmet
 import { 
   Sparkles, 
   Award, 
@@ -32,6 +33,29 @@ export default function About() {
   return (
     <div className="w-full bg-[#F8FAFC] min-h-screen text-[#0B192C]">
       
+      {/* Dynamic SEO Meta Tags using React Helmet */}
+      <Helmet>
+        {/* Primary Page Title & Meta Description */}
+        <title>About Us | Trippy Web House - Digital Agency & MSME Registered</title>
+        <meta 
+          name="description" 
+          content="Learn about Trippy Web House — a Govt. MSME Udyam registered digital growth studio based in Tamil Nadu building modern web apps, brand assets, and custom AI automations." 
+        />
+        <meta 
+          name="keywords" 
+          content="About Trippy Web House, MSME Registered Web Agency, Digital Growth Agency Tamil Nadu, Arunachala Eshwar Vetrivel, Web Development Studio" 
+        />
+
+        {/* Social Media Link Preview Tags */}
+        <meta property="og:title" content="About Trippy Web House | MSME Registered Growth Studio" />
+        <meta 
+          property="og:description" 
+          content="We bridge engineering and design to build web systems, brand identities, and AI integrations." 
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://trippywebhouse.vercel.app/about" />
+      </Helmet>
+
       {/* 1. Header Hero Banner */}
       <section className="relative w-full py-24 md:py-32 bg-[#0B192C] overflow-hidden flex items-center justify-center">
         <div 
@@ -154,7 +178,7 @@ export default function About() {
                   <p className="text-xs font-bold text-cyan-400">AI & Growth</p>
                 </div>
                 <div className="bg-white/5 backdrop-blur-md rounded-2xl p-3 text-center border border-white/10">
-                  <p className="text-xs font-bold text-cyan-400">Web developnment</p>
+                  <p className="text-xs font-bold text-cyan-400">Web Development</p>
                 </div>
               </div>
             </div>
@@ -191,8 +215,6 @@ export default function About() {
                   Founder of Trippy Web House
                 </p>
               </div>
-
-          
 
               <div>
                 <a 
@@ -321,7 +343,7 @@ export default function About() {
         </div>
       </section>
 
-            {/* 5. Bottom CTA Section */}
+      {/* 5. Bottom CTA Section */}
       <section className="bg-gradient-to-r from-[#0B192C] via-[#1D4ED8] to-[#00A8E8] py-16 px-6 text-white text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10 space-y-6">
           <h2 className="text-3xl md:text-4xl font-black">Ready to Elevate Your Business?</h2>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async'; // Step 1: Import Helmet
+
 import { 
   Globe, 
   Megaphone, 
@@ -14,7 +16,6 @@ import {
 
 export default function Services() {
   const services = [
-
     {
       id: 'digital-marketing',
       title: 'Digital Marketing',
@@ -29,7 +30,6 @@ export default function Services() {
         'Conversion Rate Optimization'
       ]
     },
-
     {
       id: 'ai-setup',
       title: 'AI Setup for Business',
@@ -58,7 +58,6 @@ export default function Services() {
         'Community & Forum Platforms'
       ]
     },
-    
     {
       id: 'digital-creation',
       title: 'Digital Creation',
@@ -73,7 +72,6 @@ export default function Services() {
         'Interactive Brand Collateral'
       ]
     },
-    
     {
       id: 'social-media-management',
       title: 'Social Media Management',
@@ -107,6 +105,28 @@ export default function Services() {
   return (
     <div className="w-full bg-[#F8FAFC] min-h-screen text-[#0B192C]">
       
+      {/* Dynamic SEO Meta Tags using React Helmet */}
+      <Helmet>
+        <title>Our Services | Web Development, Digital Marketing, AI Setup & Marketing - Trippy Web House</title>
+        <meta 
+          name="description" 
+          content="Explore digital solutions by Trippy Web House: Web Development, AI Business Automation, Digital Marketing, Social Media Management, and Brand Identity in Tamil Nadu." 
+        />
+        <meta 
+          name="keywords" 
+          content="Web Development, AI Setup for Business, Digital Marketing, Social Media Management, Branding, E-Commerce Websites, Trippy Web House" 
+        />
+
+        {/* Social Media Link Preview Tags */}
+        <meta property="og:title" content="Our Services | Trippy Web House" />
+        <meta 
+          property="og:description" 
+          content="Custom Web Development, AI Automations, Digital Marketing, and Branding solutions to scale your business." 
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://trippywebhouse.vercel.app/" />
+      </Helmet>
+
       {/* 1. Header Hero Banner with Tech/AI Background Image Overlay */}
       <section className="relative w-full py-24 md:py-32 bg-[#0B192C] overflow-hidden flex items-center justify-center">
         
@@ -139,7 +159,7 @@ export default function Services() {
       {/* 2. Main Services Grid Section */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         
-        {/* Section Header styled identically to Home Page Hero Headline */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="relative group inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 border border-cyan-500/20 backdrop-blur-md shadow-[0_4px_20px_rgba(11,25,44,0.06)]">
             <span className="flex h-2 w-2 relative">
@@ -177,7 +197,7 @@ export default function Services() {
           </p>
         </div>
 
-        {/* 6 Card Grid (Wastix Style Scaffolding) */}
+        {/* 6 Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-6">
           {services.map((service) => {
             const IconComponent = service.icon;
@@ -229,27 +249,27 @@ export default function Services() {
 
       </section>
 
-      {/* 3. Bottom CTA Section with White Button Style */}
-<section className="bg-gradient-to-r from-[#0B192C] via-[#1D4ED8] to-[#00A8E8] py-16 px-6 text-white text-center relative overflow-hidden">
-  <div className="max-w-4xl mx-auto relative z-10 space-y-6">
-    <h2 className="text-3xl md:text-4xl font-black">Ready to Elevate Your Business?</h2>
-    <p className="text-slate-200 text-base md:text-lg max-w-2xl mx-auto">
-      Get in touch with Trippy Web House today to discuss your project requirements and receive a customized strategy.
-    </p>
-    <div className="pt-2">
-      <Link 
-        to="/contact" 
-        className="group relative inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-white text-[#0B192C] font-bold text-sm tracking-wide shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_35px_rgba(255,255,255,0.3)] hover:text-[#1D4ED8] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden no-underline"
-      >
-        <div className="absolute inset-0 w-1/2 h-full bg-slate-200/40 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
-        <span className="relative z-10">Get Started Now</span>
-        <div className="relative z-10 w-7 h-7 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-[#1D4ED8] group-hover:text-white group-hover:rotate-45 transition-all duration-300">
-          <ArrowUpRight className="w-4 h-4" />
+      {/* 3. Bottom CTA Section */}
+      <section className="bg-gradient-to-r from-[#0B192C] via-[#1D4ED8] to-[#00A8E8] py-16 px-6 text-white text-center relative overflow-hidden">
+        <div className="max-w-4xl mx-auto relative z-10 space-y-6">
+          <h2 className="text-3xl md:text-4xl font-black">Ready to Elevate Your Business?</h2>
+          <p className="text-slate-200 text-base md:text-lg max-w-2xl mx-auto">
+            Get in touch with Trippy Web House today to discuss your project requirements and receive a customized strategy.
+          </p>
+          <div className="pt-2">
+            <Link 
+              to="/contact" 
+              className="group relative inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-white text-[#0B192C] font-bold text-sm tracking-wide shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_35px_rgba(255,255,255,0.3)] hover:text-[#1D4ED8] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden no-underline"
+            >
+              <div className="absolute inset-0 w-1/2 h-full bg-slate-200/40 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
+              <span className="relative z-10">Get Started Now</span>
+              <div className="relative z-10 w-7 h-7 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-[#1D4ED8] group-hover:text-white group-hover:rotate-45 transition-all duration-300">
+                <ArrowUpRight className="w-4 h-4" />
+              </div>
+            </Link>
+          </div>
         </div>
-      </Link>
-    </div>
-  </div>
-</section>
+      </section>
 
     </div>
   );
