@@ -63,7 +63,7 @@ export default function HeroSection() {
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-4 pt-3">
             
-            {/* Start Your Project Button (Navigates to /contact) */}
+            {/* Start Your Project Button */}
             <Link 
               to="/contact" 
               className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-[#0B192C] via-[#1D4ED8] to-[#00A8E8] text-white font-bold text-sm tracking-wide shadow-[0_10px_25px_rgba(29,78,216,0.3)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(0,210,254,0.4)] hover:-translate-y-0.5 active:translate-y-0 overflow-hidden no-underline"
@@ -76,7 +76,7 @@ export default function HeroSection() {
               </div>
             </Link>
             
-            {/* View Portfolio Button (Navigates to /about) */}
+            {/* View Portfolio Button */}
             <Link 
               to="/about" 
               className="group relative inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-2xl bg-white text-[#0B192C] font-bold text-sm border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.03)] transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_8px_25px_rgba(0,210,254,0.15)] hover:-translate-y-0.5 active:translate-y-0 no-underline"
@@ -89,21 +89,21 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right Column Component */}
-        <div className="lg:col-span-7 z-10">
+        {/* Right Column Component (Imports Floating Cards & Character Visual) */}
+        <div className="lg:col-span-7 z-10 w-full">
           <HeroRight />
         </div>
 
       </div>
 
-      {/* Bottom Bar */}
+      {/* Bottom Trust & Stats Bar */}
       <div className="max-w-7xl mx-auto mt-6 bg-white/90 backdrop-blur-xl rounded-3xl p-6 border border-gray-100 shadow-xl grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
         
-        <div className="md:col-span-6 border-r-0 md:border-r border-gray-200 pr-6">
+        <div className="md:col-span-6 border-r-0 md:border-r border-gray-200 pr-0 md:pr-6">
           <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">
             TRUSTED BY AMAZING BUSINESSES
           </p>
-          <div className="flex items-center justify-between text-[#0B192C] font-extrabold text-xs tracking-wider">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-[#0B192C] font-extrabold text-xs tracking-wider">
             <span>ROYAL STEEL GLASS SOLUTION</span>
             <span>MIRRA PETRO PRODUCTS</span>
             <span>FRESH THALIR</span>
@@ -112,7 +112,7 @@ export default function HeroSection() {
 
         <div className="md:col-span-6 grid grid-cols-2 gap-4">
           <div className="bg-slate-50 p-3.5 rounded-2xl flex items-center gap-3 border border-slate-100">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
               <FolderCheck className="w-5 h-5" />
             </div>
             <div>
@@ -122,7 +122,7 @@ export default function HeroSection() {
           </div>
 
           <div className="bg-slate-50 p-3.5 rounded-2xl flex items-center gap-3 border border-slate-100">
-            <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center shrink-0">
               <Headphones className="w-5 h-5" />
             </div>
             <div>
