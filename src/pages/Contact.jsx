@@ -1,221 +1,307 @@
-import { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { Phone, Mail, ArrowUpRight, Send, MapPin, MessageCircle, CheckCircle, AlertCircle } from 'lucide-react';
-import InstagramIcon from '../components/InstagramIcon';
-import PeakMark from '../components/PeakMark';
-import './Contact.css';
-
-
-const EMAILJS_SERVICE_ID  = 'service_la385ni';   // e.g. 'service_abc123'
-const EMAILJS_TEMPLATE_ID = 'template_gwh9inz';  // e.g. 'template_xyz456'
-const EMAILJS_PUBLIC_KEY  = 'DdgJ_B3EemAOoGyTp';   // e.g. 'abcDEFghiJKL...'
-
-// ─── WhatsApp Config ─────────────────────────────────────────────────────────
-const WHATSAPP_NUMBER = '917695948634'; // 91 = India country code + your number
-
-const SERVICE_OPTIONS = [
-  'Website Design',
-  'E-Commerce Store',
-  'Branding & Growth',
-  'Not sure yet',
-];
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  Sparkles, 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Send, 
+  ArrowUpRight 
+} from 'lucide-react';
 
 export default function Contact() {
-  const formRef = useRef(null);
-  const [form, setForm]     = useState({ name: '', email: '', service: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [selectedService, setSelectedService] = useState('Website Design');
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    message: ''
+  });
 
-  function update(field, value) {
-    setForm((f) => ({ ...f, [field]: value }));
-  }
+  const services = [
+    'Website Design',
+    'E-Commerce Store',
+    'Branding & Growth',
+    'Not sure yet'
+  ];
 
-  async function handleSubmit(e) {
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus('sending');
 
-    // Build WhatsApp message
-    const waText = encodeURIComponent(
-      `🔔 *New Enquiry - Trippy Web House*\n\n` +
-      `👤 *Name:* ${form.name}\n` +
-      `📧 *Email:* ${form.email}\n` +
-      `🛠️ *Service:* ${form.service || 'Not selected'}\n` +
-      `💬 *Message:* ${form.message}`
-    );
-    const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
-
-    try {
-      // Send email via EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name:  form.name,
-          from_email: form.email,
-          service:    form.service || 'Not selected',
-          message:    form.message,
-          to_email:   'trippywebhouse@gmail.com',
-        },
-        EMAILJS_PUBLIC_KEY
-      );
-
-      setStatus('success');
-      setForm({ name: '', email: '', service: '', message: '' });
-
-      // Open WhatsApp notification in new tab
-      window.open(waURL, '_blank');
-    } catch (err) {
-      console.error('EmailJS error:', err);
-      setStatus('error');
+    if (!formData.fullName || !formData.email) {
+      alert('Please fill in required fields.');
+      return;
     }
-  }
 
-  function reset() {
-    setStatus('idle');
-    setForm({ name: '', email: '', service: '', message: '' });
-  }
+    // Format text for WhatsApp & Email Notification
+    const messageText = 
+      `🔹 *New Enquiry - Trippy Web House*\n\n` +
+      `👤 *Name:* ${formData.fullName}\n` +
+      `📧 *Email:* ${formData.email}\n` +
+      `🛠️ *Service:* ${selectedService}\n` +
+      `💬 *Message:* ${formData.message || 'N/A'}`;
+
+    // Redirect to WhatsApp
+    const whatsappUrl = `https://wa.me/917695948634?text=${encodeURIComponent(messageText)}`;
+    window.open(whatsappUrl, '_blank');
+
+    // Trigger Mail Client Backup
+    const mailtoUrl = `mailto:trippywebhouse@gmail.com?subject=New Enquiry from ${encodeURIComponent(formData.fullName)}&body=${encodeURIComponent(messageText)}`;
+    setTimeout(() => {
+      window.location.href = mailtoUrl;
+    }, 500);
+  };
 
   return (
-    <div className="contact-page">
-      <section className="section contact-hero">
-        <div className="container">
-          <div className="eyebrow">Contact</div>
-          <h1 className="h-display contact-hero-title">
-            Let's start <span className="text-grad">building your brand.</span>
+    <div className="w-full bg-[#F8FAFC] min-h-screen text-[#0B192C]">
+      
+      {/* 1. Dark Header Hero Banner */}
+      <section className="relative w-full py-24 md:py-32 bg-[#0B192C] overflow-hidden flex items-center justify-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-25 pointer-events-none"
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80')` 
+          }}
+        />
+
+        {/* Ambient Glow Effects */}
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-[#1D4ED8] to-[#00A8E8] opacity-30 blur-[130px] rounded-full pointer-events-none" />
+        <div className="absolute -bottom-10 left-10 w-80 h-80 bg-cyan-500 opacity-20 blur-[110px] rounded-full pointer-events-none" />
+        
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-4">
+            Contact <span className="bg-gradient-to-r from-[#00A8E8] via-[#1D4ED8] to-[#00D2FE] bg-clip-text text-transparent">Trippy Web House</span>
           </h1>
-          <p className="contact-hero-sub">
-            Tell us a little about your business and what you need. We typically reply within a day.
-          </p>
+          
+          {/* Breadcrumb Navigation */}
+          <div className="flex items-center justify-center gap-2 text-sm font-semibold text-slate-300">
+            <Link to="/" className="hover:text-cyan-400 transition-colors no-underline text-slate-300">Home</Link>
+            <span className="text-cyan-500">&gt;</span>
+            <span className="text-cyan-400">Contact</span>
+          </div>
         </div>
       </section>
 
-      <section className="contact-main">
-        <div className="container contact-grid">
-          <div className="panel contact-form-card">
-
-            {status === 'success' ? (
-              <div className="contact-success">
-                <CheckCircle size={48} color="#2563eb" />
-                <h3>Message sent! 🎉</h3>
-                <p>Thanks for reaching out — you'll hear from us within a day. We've also sent you a WhatsApp notification.</p>
-                <button className="btn btn-primary" onClick={reset}>Send another message</button>
-              </div>
-            ) : status === 'error' ? (
-              <div className="contact-success">
-                <AlertCircle size={48} color="#dc2626" />
-                <h3>Oops, something went wrong</h3>
-                <p>Please try again or contact us directly at trippywebhouse@gmail.com</p>
-                <button className="btn btn-primary" onClick={reset}>Try again</button>
-              </div>
-            ) : (
-              <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
-                <div className="contact-form-header">
-                  <h2 className="contact-form-title">Send us a message</h2>
-                  <p className="contact-form-sub">We'll reply via email + WhatsApp</p>
-                </div>
-
-                <div className="form-row">
-                  <label>
-                    <span>Full name *</span>
-                    <input type="text" required value={form.name}
-                      onChange={(e) => update('name', e.target.value)}
-                      placeholder="Your name" />
-                  </label>
-                  <label>
-                    <span>Email *</span>
-                    <input type="email" required value={form.email}
-                      onChange={(e) => update('email', e.target.value)}
-                      placeholder="you@email.com" />
-                  </label>
-                </div>
-
-                <label>
-                  <span>What do you need?</span>
-                  <div className="service-chips">
-                    {SERVICE_OPTIONS.map((s) => (
-                      <button type="button" key={s}
-                        className={`service-chip ${form.service === s ? 'service-chip-active' : ''}`}
-                        onClick={() => update('service', s)}>
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                </label>
-
-                <label>
-                  <span>Tell us about your project *</span>
-                  <textarea required rows={5} value={form.message}
-                    onChange={(e) => update('message', e.target.value)}
-                    placeholder="What are you building? Any timeline or budget in mind?" />
-                </label>
-
-                <div className="contact-submit-row">
-                  <button type="submit" className="btn btn-primary contact-submit"
-                    disabled={status === 'sending'}>
-                    {status === 'sending' ? 'Sending...' : <>Send message <Send size={15} /></>}
-                  </button>
-                  <div className="contact-notify-badges">
-                    <span className="notify-badge"><Mail size={13} /> Gmail</span>
-                    <span className="notify-badge notify-badge-wa"><MessageCircle size={13} /> WhatsApp</span>
-                  </div>
-                </div>
-              </form>
-            )}
+      {/* 2. Main Contact Form & Info Container */}
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+        
+        {/* Section Headline */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="relative group inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 border border-cyan-500/20 backdrop-blur-md shadow-[0_4px_20px_rgba(11,25,44,0.06)]">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            </span>
+            <span className="text-[11px] font-extrabold bg-gradient-to-r from-[#0B192C] via-[#1E3E62] to-[#00A8E8] bg-clip-text text-transparent tracking-widest uppercase">
+              CONTACT US
+            </span>
+            <Sparkles className="w-3.5 h-3.5 text-cyan-500" />
           </div>
 
-          <div className="contact-side">
-            <div className="panel contact-info-card">
-              {[
-                { icon: Phone, label: 'Call us', val: '+91 76959 48634', href: 'tel:+917695948634' },
-                { icon: Mail, label: 'Email us', val: 'trippywebhouse@gmail.com', href: 'mailto:trippywebhouse@gmail.com' },
-              ].map((item) => (
-                <div className="contact-info-row" key={item.label}>
-                  <div className="contact-info-icon"><item.icon size={17} /></div>
-                  <div>
-                    <div className="contact-info-label">{item.label}</div>
-                    <a href={item.href} className="contact-info-value">{item.val}</a>
-                  </div>
-                </div>
-              ))}
-              <div className="contact-info-row">
-                <div className="contact-info-icon"><InstagramIcon size={17} /></div>
-                <div>
-                  <div className="contact-info-label">Follow us</div>
-                  <a href="https://instagram.com/trippy_web.house" target="_blank" rel="noreferrer" className="contact-info-value">@trippy_web.house</a>
-                </div>
-              </div>
-              <div className="contact-info-row">
-                <div className="contact-info-icon"><MapPin size={17} /></div>
-                <div>
-                  <div className="contact-info-label">Based in</div>
-                  <div className="contact-info-value">Tamil Nadu, India</div>
-                </div>
-              </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B192C] leading-[1.15] tracking-tight font-sans">
+            Let’s start building your{" "}
+            <span className="relative inline-block bg-gradient-to-r from-[#0B192C] via-[#1D4ED8] to-[#00D2FE] bg-clip-text text-transparent">
+              brand.
+              <svg 
+                className="absolute left-0 -bottom-1 w-full h-2.5 text-[#00D2FE] max-w-full" 
+                viewBox="0 0 200 9" 
+                fill="none" 
+                preserveAspectRatio="none"
+              >
+                <path 
+                  d="M2.00073 7C50.0007 2 150.001 2 198.001 7" 
+                  stroke="currentColor" 
+                  strokeWidth="3" 
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+          </h2>
+          <p className="text-slate-600 text-base md:text-lg font-medium">
+            Tell us a little about your business and what you need. We typically reply within a day.
+          </p>
+        </div>
+
+        {/* Content Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Form Box */}
+          <div className="lg:col-span-7 bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-[0_10px_30px_rgba(11,25,44,0.04)] space-y-6">
+            <div>
+              <h3 className="text-2xl font-extrabold text-[#0B192C]">Send us a message</h3>
+              <p className="text-xs text-slate-500 font-medium mt-1">We'll reply via email + WhatsApp</p>
             </div>
 
-            {/* WhatsApp direct card */}
-            <div className="panel contact-wa-card">
-              <div className="wa-icon">💬</div>
-              <h3>WhatsApp us directly</h3>
-              <p>Quick response guaranteed. Send us your requirements on WhatsApp.</p>
-              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi Trippy Web House! I want to discuss a project.')}`}
-                target="_blank" rel="noreferrer" className="btn btn-wa">
-                <MessageCircle size={16} /> Chat on WhatsApp
-              </a>
-            </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-[#0B192C] uppercase tracking-wider">Full name *</label>
+                  <input 
+                    type="text" 
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    placeholder="Your name" 
+                    required
+                    className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-medium text-[#0B192C] focus:outline-none focus:border-[#1D4ED8] focus:bg-white transition-all"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-[#0B192C] uppercase tracking-wider">Email *</label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="you@email.com" 
+                    required
+                    className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-medium text-[#0B192C] focus:outline-none focus:border-[#1D4ED8] focus:bg-white transition-all"
+                  />
+                </div>
+              </div>
 
-            <div className="panel contact-cta-card">
-              <PeakMark size={30} />
-              <h3>Prefer Instagram?</h3>
-              <p>DM us your requirements and we'll set up a quick call.</p>
-              <a href="https://instagram.com/trippy_web.house" target="_blank" rel="noreferrer" className="btn btn-ghost">
-                Message on Instagram <ArrowUpRight size={15} />
-              </a>
-            </div>
+              {/* Service Pills */}
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-[#0B192C] uppercase tracking-wider">What do you need?</label>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {services.map((service, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedService(service)}
+                      className={`px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all duration-200 ${
+                        selectedService === service
+                          ? 'bg-gradient-to-r from-[#0B192C] to-[#1D4ED8] text-white shadow-md'
+                          : 'bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100'
+                      }`}
+                    >
+                      {service}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Message Input */}
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-[#0B192C] uppercase tracking-wider">Tell us about your project *</label>
+                <textarea 
+                  rows={4}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="What are you building? Any timeline or budget in mind?" 
+                  className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-medium text-[#0B192C] focus:outline-none focus:border-[#1D4ED8] focus:bg-white transition-all resize-none"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button 
+                type="submit"
+                className="group relative w-full inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-[#0B192C] via-[#1D4ED8] to-[#00A8E8] text-white font-bold text-sm tracking-wide shadow-[0_10px_25px_rgba(29,78,216,0.3)] border border-white/20 transition-all duration-300 hover:shadow-[0_15px_35px_rgba(0,210,254,0.4)] hover:-translate-y-0.5 active:translate-y-0 overflow-hidden cursor-pointer"
+              >
+                <div className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
+                <span className="relative z-10">Send Message</span>
+                <div className="relative z-10 w-7 h-7 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
+                  <Send className="w-3.5 h-3.5 text-white" />
+                </div>
+              </button>
+            </form>
           </div>
+
+          {/* Right Info Sidebar */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Quick Contact Cards */}
+            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-[0_10px_30px_rgba(11,25,44,0.04)] space-y-6">
+              
+              <div className="flex items-start gap-4">
+                <div className="p-3.5 rounded-2xl bg-cyan-50 text-[#1D4ED8] border border-cyan-100">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Call us</p>
+                  <a href="tel:+917695948634" className="text-base font-extrabold text-[#0B192C] hover:text-[#1D4ED8] transition-colors no-underline">
+                    +91 76959 48634
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3.5 rounded-2xl bg-cyan-50 text-[#1D4ED8] border border-cyan-100">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email us</p>
+                  <a href="mailto:trippywebhouse@gmail.com" className="text-base font-extrabold text-[#0B192C] hover:text-[#1D4ED8] transition-colors no-underline">
+                    trippywebhouse@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3.5 rounded-2xl bg-cyan-50 text-[#1D4ED8] border border-cyan-100">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Follow us</p>
+                  <a href="https://instagram.com/trippy_web.house" target="_blank" rel="noopener noreferrer" className="text-base font-extrabold text-[#0B192C] hover:text-[#1D4ED8] transition-colors no-underline">
+                    @trippy_web.house
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3.5 rounded-2xl bg-cyan-50 text-[#1D4ED8] border border-cyan-100">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Based in</p>
+                  <p className="text-base font-extrabold text-[#0B192C]">
+                    Tamil Nadu, India
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Direct WhatsApp Box */}
+            <div className="bg-gradient-to-br from-[#0B192C] to-[#1E3E62] p-8 rounded-3xl text-white shadow-xl space-y-4 text-center border border-slate-800 relative overflow-hidden">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
+                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                </svg>
+              </div>
+              <h4 className="text-xl font-extrabold text-white">WhatsApp us directly</h4>
+              <p className="text-xs text-slate-300 font-medium max-w-xs mx-auto">
+                Quick response guaranteed. Send us your requirements on WhatsApp.
+              </p>
+              <div className="pt-2">
+                <a 
+                  href="https://wa.me/917695948634" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs tracking-wide transition-all shadow-lg no-underline w-full"
+                >
+                  <span>Chat on WhatsApp</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
       
+
     </div>
   );
 }

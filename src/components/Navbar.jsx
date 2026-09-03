@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
-import logo from '../assets/logo-transparent.png';
+import React, { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { X, Menu } from 'lucide-react';
+import logoImg from '../assets/logo-transparent.png'; // Adjust extension (.png, .svg, .webp) as needed
 import './Navbar.css';
 
 const LINKS = [
@@ -13,25 +13,21 @@ const LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [window.location.pathname]);
 
   return (
-    <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
-      <div className="container nav-inner">
-        <NavLink to="/" className="nav-brand" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Trippy Web House" className="nav-logo" />
+    <header className="nav-header">
+      <div className="nav-container">
+        
+        {/* Left: Image Logo */}
+        <NavLink to="/" className="nav-logo-link">
+          <img 
+            src={logoImg} 
+            alt="Trippy Web House" 
+            className="h-10 sm:h-12 w-auto object-contain"
+          />
         </NavLink>
 
+        {/* Center: Navigation Links */}
         <nav className="nav-links" aria-label="Primary">
           {LINKS.map((l) => (
             <NavLink
@@ -45,36 +41,40 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <NavLink to="/contact" className="btn btn-primary nav-cta">
-          Get a Quote <ArrowUpRight size={16} />
-        </NavLink>
+        {/* Right: Get a Quote Button */}
+        <div className="nav-actions">
+          <Link to="/contact" className="nav-btn">
+            Get a Quote ↗
+          </Link>
+        </div>
 
+        {/* Mobile Menu Toggle */}
         <button
           className="nav-toggle"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
+      {/* Mobile Dropdown Menu */}
       {open && (
-        <div className="nav-mobile">
+        <div className="mobile-menu">
           {LINKS.map((l) => (
             <NavLink
               key={l.to}
               to={l.to}
-              className={({ isActive }) => `nav-mobile-link ${isActive ? 'nav-link-active' : ''}`}
+              className={({ isActive }) => `mobile-link ${isActive ? 'mobile-link-active' : ''}`}
               onClick={() => setOpen(false)}
               end={l.to === '/'}
             >
               {l.label}
             </NavLink>
           ))}
-          <NavLink to="/contact" className="btn btn-primary" onClick={() => setOpen(false)}>
-            Get a Quote <ArrowUpRight size={16} />
-          </NavLink>
+          <Link to="/contact" className="mobile-nav-btn" onClick={() => setOpen(false)}>
+            Get a Quote ↗
+          </Link>
         </div>
       )}
     </header>

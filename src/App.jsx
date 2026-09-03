@@ -8,7 +8,7 @@ import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
-// SEO page titles per route - Fix 7
+// SEO page titles per route
 const PAGE_TITLES = {
   '/': 'Trippy Web House | Build. Brand. Grow.',
   '/services': 'Our Services | Trippy Web House',
@@ -20,13 +20,12 @@ function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // Update page title on route change - Fix 7
     document.title = PAGE_TITLES[pathname] || 'Trippy Web House';
   }, [pathname]);
   return null;
 }
 
-// Fix 6: Scroll progress bar at top
+// Scroll progress bar at top with Sapphire Cyan glow
 function ScrollProgressBar() {
   useEffect(() => {
     function onScroll() {
@@ -42,21 +41,19 @@ function ScrollProgressBar() {
   }, []);
 
   return (
-    <div id="scroll-progress-container" style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999, height: '3px',
-      background: 'transparent', pointerEvents: 'none',
-    }}>
-      <div id="scroll-progress" style={{
-        height: '100%', width: '0%',
-        background: 'linear-gradient(90deg, #0891b2, #2563eb)',
-        transition: 'width 0.1s ease',
-        boxShadow: '0 0 8px rgba(37, 99, 235, 0.5)',
-      }} />
+    <div 
+      id="scroll-progress-container" 
+      className="fixed top-0 left-0 right-0 z-[9999] h-[3px] bg-transparent pointer-events-none"
+    >
+      <div 
+        id="scroll-progress" 
+        className="h-full w-0 bg-gradient-to-r from-[#00D2FE] via-[#1D4ED8] to-[#0B192C] transition-all duration-100 ease-out shadow-[0_0_10px_rgba(0,210,254,0.6)]"
+      />
     </div>
   );
 }
 
-// Fix 6: Page-to-page navigation arrows at bottom of each page
+// Upgraded page-to-page navigation arrows at bottom of each page
 const PAGE_ORDER = ['/', '/services', '/about', '/contact'];
 const PAGE_LABELS = { '/': 'Home', '/services': 'Services', '/about': 'About', '/contact': 'Contact' };
 
@@ -68,21 +65,19 @@ function PageNav() {
   if (!nextPage) return null;
 
   return (
-    <div style={{
-      display: 'flex', justifyContent: 'center', padding: '0 0 48px',
-      fontFamily: 'var(--ff-body)',
-    }}>
-      <NavLink to={nextPage} style={{
-        display: 'flex', alignItems: 'center', gap: '10px',
-        padding: '12px 28px', borderRadius: '100px',
-        background: 'rgba(37,99,235,0.08)', border: '1px solid rgba(37,99,235,0.22)',
-        color: 'var(--blue-500)', fontWeight: 600, fontSize: '14.5px',
-        textDecoration: 'none', transition: 'all 0.2s ease',
-      }}
-      onMouseEnter={e => e.currentTarget.style.background = 'rgba(37,99,235,0.15)'}
-      onMouseLeave={e => e.currentTarget.style.background = 'rgba(37,99,235,0.08)'}
+    <div className="flex justify-center pb-12 pt-4 font-sans bg-[#F4F7FC]">
+      <NavLink 
+        to={nextPage} 
+        className="group relative inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-white/90 backdrop-blur-md border border-cyan-500/20 text-[#0B192C] font-extrabold text-xs tracking-wide shadow-[0_4px_20px_rgba(11,25,44,0.06)] hover:border-cyan-400 hover:shadow-[0_8px_30px_rgba(0,210,254,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 no-underline"
       >
-        Next: {PAGE_LABELS[nextPage]} →
+        <span className="text-slate-600 group-hover:text-[#0B192C] transition-colors">
+           {PAGE_LABELS[nextPage]}
+        </span>
+        <div className="w-5 h-5 rounded-full bg-cyan-50 flex items-center justify-center text-cyan-600 group-hover:bg-[#0B192C] group-hover:text-cyan-400 transition-colors duration-300">
+          <span className="text-xs font-black group-hover:translate-x-0.5 transition-transform duration-300">
+            →
+          </span>
+        </div>
       </NavLink>
     </div>
   );
