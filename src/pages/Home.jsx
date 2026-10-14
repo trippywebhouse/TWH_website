@@ -28,7 +28,7 @@ export default function Home() {
           content="Custom Web Development, AI Business Automations, and Digital Marketing solutions tailored for modern brands." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://trippywebhouse.vercel.app/" />
+        <meta property="og:url" content="https://www.trippywebhouse.com/" />
       </Helmet>
 
       <Hero />

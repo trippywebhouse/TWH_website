@@ -124,7 +124,7 @@ export default function Services() {
           content="Custom Web Development, AI Automations, Digital Marketing, and Branding solutions to scale your business." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://trippywebhouse.vercel.app/" />
+        <meta property="og:url" content="https://www.trippywebhouse.com/" />
       </Helmet>
 
       {/* 1. Header Hero Banner with Tech/AI Background Image Overlay */}

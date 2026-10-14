@@ -79,7 +79,7 @@ export default function Contact() {
           content="Let's build your brand. Get in touch with us for web applications, AI automations, and growth marketing." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://trippywebhouse.vercel.app/" />
+        <meta property="og:url" content="https://www.trippywebhouse.com/" />
       </Helmet>
 
       {/* 1. Dark Header Hero Banner */}

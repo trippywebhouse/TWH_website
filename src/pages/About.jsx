@@ -53,7 +53,7 @@ export default function About() {
           content="We bridge engineering and design to build web systems, brand identities, and AI integrations." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://trippywebhouse.vercel.app/about" />
+        <meta property="og:url" content="https://www.trippywebhouse.com/" />
       </Helmet>
 
       {/* 1. Header Hero Banner */}
