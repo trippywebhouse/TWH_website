@@ -29,6 +29,18 @@ export default function Home() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.trippywebhouse.com/" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Trippy Web House",
+            "url": "https://www.trippywebhouse.com",
+            "logo": "https://www.trippywebhouse.com/logo-transparent.png",
+            "sameAs": [
+              "https://www.instagram.com/trippy_web.house"
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Hero />
