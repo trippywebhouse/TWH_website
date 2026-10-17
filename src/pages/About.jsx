@@ -54,6 +54,10 @@ export default function About() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.trippywebhouse.com/" />
+        
+        <title>About Us | Trippy Web House - Digital Solutions Agency</title>
+        <meta name="description" content="Learn about Trippy Web House, a Govt. MSME registered digital solutions agency crafting high-performance web systems and digital growth strategies." />
+        <link rel="canonical" href="https://www.trippywebhouse.com/about" />
       </Helmet>
 
       {/* 1. Header Hero Banner */}

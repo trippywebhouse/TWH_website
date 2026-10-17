@@ -80,6 +80,24 @@ export default function Contact() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.trippywebhouse.com/" />
+        
+        <title>Contact Us | Trippy Web House</title>
+        <meta name="description" content="Get in touch with Trippy Web House for custom web applications, AI business automations, and digital marketing strategies." />
+        <link rel="canonical" href="https://www.trippywebhouse.com/contact" />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact Trippy Web House",
+            "url": "https://www.trippywebhouse.com/contact",
+            "mainEntity": {
+              "@type": "ProfessionalService",
+              "name": "Trippy Web House",
+              "url": "https://www.trippywebhouse.com"
+            }
+          })}
+        </script>
       </Helmet>
 
       {/* 1. Dark Header Hero Banner */}

@@ -125,6 +125,36 @@ export default function Services() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.trippywebhouse.com/" />
+        <title>Our Services | Web Development, AI Setup & Marketing - Trippy Web House</title>
+  <meta name="description" content="Explore Trippy Web House services: custom React & Next.js web applications, AI business automations, Meta Ads management, and brand identity design." />
+  <link rel="canonical" href="https://www.trippywebhouse.com/services" />
+  
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Web Development, Digital Marketing, AI Solutions",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Trippy Web House",
+        "url": "https://www.trippywebhouse.com"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Digital & Tech Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Application Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Business Automations" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Marketing & Meta Ads" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Identity & Graphic Design" } }
+        ]
+      }
+    })}
+  </script>
       </Helmet>
 
       {/* 1. Header Hero Banner with Tech/AI Background Image Overlay */}
