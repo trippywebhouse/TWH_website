@@ -52,7 +52,8 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Trippy Web House",
-            "image": "https://www.trippywebhouse.com/logo-transparent.png",
+            "logo": "https://www.trippywebhouse.com/favicon-192x192.png",
+            "image": "https://www.trippywebhouse.com/favicon-192x192.png",
             "@id": "https://www.trippywebhouse.com/#organization",
             "url": "https://www.trippywebhouse.com",
             "address": {
