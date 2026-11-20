@@ -9,6 +9,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.trippywebhouse.com/services</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.trippywebhouse.com/contact</loc>
     <priority>0.8</priority>
   </url>
